@@ -1,4 +1,4 @@
-<div [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container">
+<div [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container margin-top">
   <form>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
@@ -6,6 +6,7 @@
              id="exampleInputEmail1"
              aria-describedby="emailHelp" placeholder="Enter email"
              [class.is-valid]="loginForm.get('email').valid"
+             [class.is-invalid] = "loginForm.get('email').invalid && loginForm.get('email').touched"
 
       >
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -21,10 +22,13 @@
 
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input required formControlName="password" type="password" [maxLength]="4" class="form-control"
+      <input required formControlName="password" type="password" minlength="4" maxlength="4" class="form-control"
              id="exampleInputPassword1"
              placeholder="Password"
-             [class.is-valid]="loginForm.get('password').valid">
+             [class.is-valid]="loginForm.get('password').valid"
+             [class.is-invalid] = "loginForm.get('password').invalid && loginForm.get('password').touched"
+      >
+
       <small class="form-text text-muted">Password must be 4 letters.</small>
 
 
